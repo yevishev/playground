@@ -13,10 +13,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        // Используйте этот метод для дополнительной настройки и присоединения UIWindow `window` к предоставленной UIWindowScene `scene`.
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        //созданный объект класса UIWindow с параметром frame возращает новое view представление с заданными рамками
+        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        //изменения значения свойства windowScene перемещает окно на новую указанную сцену
+        window?.windowScene = windowScene
+        //свойство rootViewController должено принять в виде значения объект класса ViewController, которое отвечает за выдачу контента. если window имеет уже иерархию представлений, то старая вьюшка удалится перед записью новой
+        window?.rootViewController = MainTabBarViewController()
+        //данный метод необходими, чтобы расположить результат вьюхи поверх всех окон
+        window?.makeKeyAndVisible()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
