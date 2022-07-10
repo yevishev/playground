@@ -33,7 +33,5 @@ class MainTabBarViewController: UITabBarController {
         //Первым параметром метода я устанавливаю массив объектов классов ViewController для tabBarController
         setViewControllers([vc1, vc2, vc3, vc4], animated: true)
     }
-
-
 }
 

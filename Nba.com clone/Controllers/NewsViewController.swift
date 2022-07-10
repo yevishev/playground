@@ -9,11 +9,21 @@ import UIKit
 
 class NewsViewController: UIViewController {
     
+    var newsImages: Array<String> = [
+        "image1",
+        "image2",
+        "image3",
+        "image4",
+        "image5",
+        "image6",
+        "image7",
+    ]
+    
     //записываю в константу замыкание для последующего вызова внутри данного класса, которая должна вернуть объект класса UITableView
     private let newsTableView: UITableView = {
         let table = UITableView()
         //в методе register указывается класс, который будет отвечать за логику создания ячейки таблицы
-        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        table.register(NewsViewCell.self, forCellReuseIdentifier: "ImageViewCell")
         return table
     }()
     
@@ -42,12 +52,19 @@ class NewsViewController: UIViewController {
 extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 20
+        return 7
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "Some shit"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ImageViewCell", for: indexPath)
+        var content = cell.defaultContentConfiguration()
+        content.image = UIImage(named: newsImages[indexPath.row])
+        content.text = "test123"
+        cell.contentConfiguration = content
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 240
     }
 }

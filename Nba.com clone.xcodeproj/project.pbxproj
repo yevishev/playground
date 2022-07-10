@@ -19,6 +19,7 @@
 		66CDC2B028797FA3007348AF /* Nba_com_cloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2AF28797FA3007348AF /* Nba_com_cloneTests.swift */; };
 		66CDC2BA28797FA3007348AF /* Nba_com_cloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2B928797FA3007348AF /* Nba_com_cloneUITests.swift */; };
 		66CDC2BC28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */; };
+		66E184EF287AC1590060CF77 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E184EE287AC1590060CF77 /* NewsViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		6696766028799618002DD468 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		6696766028799618002DD468 /* NewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; wrapsLines = 1; };
 		6696766228799635002DD468 /* ScoreboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreboardViewController.swift; sourceTree = "<group>"; };
 		6696766428799646002DD468 /* RankingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingsViewController.swift; sourceTree = "<group>"; };
 		6696766628799652002DD468 /* ScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +56,7 @@
 		66CDC2B528797FA3007348AF /* Nba.com cloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nba.com cloneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		66CDC2B928797FA3007348AF /* Nba_com_cloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nba_com_cloneUITests.swift; sourceTree = "<group>"; };
 		66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nba_com_cloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		66E184EE287AC1590060CF77 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +118,10 @@
 		66CDC29728797FA2007348AF /* Nba.com clone */ = {
 			isa = PBXGroup;
 			children = (
+				66E184EC287AC10E0060CF77 /* Resources */,
+				66E184EB287AC0CC0060CF77 /* Models */,
+				66E184E9287AC0110060CF77 /* Views */,
+				66E184EA287AC03D0060CF77 /* ViewModels */,
 				6696765528799449002DD468 /* Controllers */,
 				66CDC29828797FA2007348AF /* AppDelegate.swift */,
 				66CDC29A28797FA2007348AF /* SceneDelegate.swift */,
@@ -142,6 +148,35 @@
 				66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */,
 			);
 			path = "Nba.com cloneUITests";
+			sourceTree = "<group>";
+		};
+		66E184E9287AC0110060CF77 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				66E184EE287AC1590060CF77 /* NewsViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		66E184EA287AC03D0060CF77 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		66E184EB287AC0CC0060CF77 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66E184EC287AC10E0060CF77 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,6 +311,7 @@
 			files = (
 				66CDC29D28797FA2007348AF /* MainTabBarViewController.swift in Sources */,
 				66CDC29928797FA2007348AF /* AppDelegate.swift in Sources */,
+				66E184EF287AC1590060CF77 /* NewsViewCell.swift in Sources */,
 				66CDC29B28797FA2007348AF /* SceneDelegate.swift in Sources */,
 				6696766128799618002DD468 /* NewsViewController.swift in Sources */,
 				6696766328799635002DD468 /* ScoreboardViewController.swift in Sources */,
