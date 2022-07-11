@@ -27,6 +27,21 @@ class RankingsViewController: UIViewController {
         button.backgroundColor = .systemBlue
         button.setTitle("check", for: .normal)
         button.addTarget(self, action: #selector(showAlert), for: UIControl.Event.touchUpInside)
+        
+        let alert = UIAlertController(
+            title: "Some instruction",
+            message: """
+            1. do something
+            2. do more
+            3. do better
+        """,
+            preferredStyle: .alert)
+        let action = UIAlertAction(
+            title: "Awesome",
+            style: .default,
+            handler: nil)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
         view.addSubview(button)
         view.addSubview(slider)
     }
