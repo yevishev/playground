@@ -58,13 +58,15 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ImageViewCell", for: indexPath)
         var content = cell.defaultContentConfiguration()
-        content.image = UIImage(named: newsImages[indexPath.row])
-        content.text = "test123"
+        let someImage = UIImage(named: newsImages[indexPath.row])
+        cell.backgroundView = UIImageView(image: someImage)
+        cell.backgroundView?.contentMode = .redraw
+        content.text = "jerk 2 days ago"
         cell.contentConfiguration = content
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 240
+        return 200
     }
 }
