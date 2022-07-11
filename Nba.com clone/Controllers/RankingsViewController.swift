@@ -55,11 +55,11 @@ class RankingsViewController: UIViewController {
         let currentValue: String = String(sliderVal)
         print(currentValue)
         let alert = UIAlertController(
-            title: "Hello, World",
+            title: "Slider value is:",
             message: currentValue + " points",
             preferredStyle: .alert)
         let action = UIAlertAction(
-            title: "Awesome",
+            title: "Done",
             style: .default,
             handler: nil)
         alert.addAction(action)
