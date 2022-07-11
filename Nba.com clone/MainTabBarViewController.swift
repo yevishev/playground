@@ -25,7 +25,7 @@ class MainTabBarViewController: UITabBarController {
         //уставновить текст под кнопками
         vc1.title = "News"
         vc2.title = "Scoreboard"
-        vc3.title = "Rankings"
+        vc3.title = "Bullseye game"
         vc4.title = "Schedule"
         
         //цвет тона. параметр tintColor применяет цвет для объектов tabBar панели

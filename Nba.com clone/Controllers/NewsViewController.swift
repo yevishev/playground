@@ -61,7 +61,7 @@ extension NewsViewController: UITableViewDelegate, UITableViewDataSource {
         let someImage = UIImage(named: newsImages[indexPath.row])
         cell.backgroundView = UIImageView(image: someImage)
         cell.backgroundView?.contentMode = .redraw
-        content.text = "GOAT"
+        content.text = "news title"
         cell.contentConfiguration = content
         return cell
     }
