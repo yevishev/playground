@@ -9,7 +9,7 @@ import UIKit
 
 class RankingsViewController: UIViewController {
     
-    private var sliderValue: Float = 0.0//значение слайдера
+    private var sliderValue: Float = 0.0 //значение слайдера
     private var scoreData: [Int] = [] // сюда аппендить очки после раунда
     private var randomValue: Int = Int.random(in: 1...100) //здесь генерить вначале и после завершения раунда новое значение
     private var scoreValue: Int = 0 //текущее значение

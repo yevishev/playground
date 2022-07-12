@@ -16,9 +16,6 @@
 		66CDC29D28797FA2007348AF /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC29C28797FA2007348AF /* MainTabBarViewController.swift */; };
 		66CDC2A228797FA3007348AF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 66CDC2A128797FA3007348AF /* Assets.xcassets */; };
 		66CDC2A528797FA3007348AF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 66CDC2A328797FA3007348AF /* LaunchScreen.storyboard */; };
-		66CDC2B028797FA3007348AF /* Nba_com_cloneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2AF28797FA3007348AF /* Nba_com_cloneTests.swift */; };
-		66CDC2BA28797FA3007348AF /* Nba_com_cloneUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2B928797FA3007348AF /* Nba_com_cloneUITests.swift */; };
-		66CDC2BC28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */; };
 		66E184EF287AC1590060CF77 /* NewsViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66E184EE287AC1590060CF77 /* NewsViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,10 +49,7 @@
 		66CDC2A428797FA3007348AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		66CDC2A628797FA3007348AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		66CDC2AB28797FA3007348AF /* Nba.com cloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nba.com cloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66CDC2AF28797FA3007348AF /* Nba_com_cloneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nba_com_cloneTests.swift; sourceTree = "<group>"; };
 		66CDC2B528797FA3007348AF /* Nba.com cloneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Nba.com cloneUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		66CDC2B928797FA3007348AF /* Nba_com_cloneUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nba_com_cloneUITests.swift; sourceTree = "<group>"; };
-		66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nba_com_cloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		66E184EE287AC1590060CF77 /* NewsViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,8 +93,6 @@
 			isa = PBXGroup;
 			children = (
 				66CDC29728797FA2007348AF /* Nba.com clone */,
-				66CDC2AE28797FA3007348AF /* Nba.com cloneTests */,
-				66CDC2B828797FA3007348AF /* Nba.com cloneUITests */,
 				66CDC29628797FA2007348AF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -131,23 +123,6 @@
 				66CDC2A628797FA3007348AF /* Info.plist */,
 			);
 			path = "Nba.com clone";
-			sourceTree = "<group>";
-		};
-		66CDC2AE28797FA3007348AF /* Nba.com cloneTests */ = {
-			isa = PBXGroup;
-			children = (
-				66CDC2AF28797FA3007348AF /* Nba_com_cloneTests.swift */,
-			);
-			path = "Nba.com cloneTests";
-			sourceTree = "<group>";
-		};
-		66CDC2B828797FA3007348AF /* Nba.com cloneUITests */ = {
-			isa = PBXGroup;
-			children = (
-				66CDC2B928797FA3007348AF /* Nba_com_cloneUITests.swift */,
-				66CDC2BB28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift */,
-			);
-			path = "Nba.com cloneUITests";
 			sourceTree = "<group>";
 		};
 		66E184E9287AC0110060CF77 /* Views */ = {
@@ -324,7 +299,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66CDC2B028797FA3007348AF /* Nba_com_cloneTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,8 +306,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				66CDC2BC28797FA3007348AF /* Nba_com_cloneUITestsLaunchTests.swift in Sources */,
-				66CDC2BA28797FA3007348AF /* Nba_com_cloneUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -488,6 +460,7 @@
 				DEVELOPMENT_TEAM = PBH2D59Q6M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nba.com clone/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = playground;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -497,7 +470,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.Nba-com-clone";
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.playground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -515,6 +488,7 @@
 				DEVELOPMENT_TEAM = PBH2D59Q6M;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Nba.com clone/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = playground;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -524,7 +498,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.test.Nba-com-clone";
+				PRODUCT_BUNDLE_IDENTIFIER = com.test.playground;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
