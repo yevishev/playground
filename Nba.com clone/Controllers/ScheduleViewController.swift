@@ -16,7 +16,7 @@ class ScheduleViewController: UIViewController, UITextFieldDelegate {
         searchTextField.backgroundColor = .white
         searchTextField.borderStyle = .roundedRect
         searchTextField.clearButtonMode = .always
-        searchTextField.returnKeyType = .search
+        searchTextField.returnKeyType = .done
         searchTextField.keyboardType = .default
         searchTextField.placeholder = "Maximum characters 20"
         searchTextField.delegate = self

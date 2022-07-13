@@ -19,14 +19,14 @@ class MainTabBarViewController: UITabBarController {
         //установить изображения для кнопок взаимодействия
         vc1.tabBarItem.image = UIImage(systemName: "newspaper")
         vc2.tabBarItem.image = UIImage(systemName: "list.number")
-        vc3.tabBarItem.image = UIImage(systemName: "chart.bar")
-        vc4.tabBarItem.image = UIImage(systemName: "calendar")
+        vc3.tabBarItem.image = UIImage(systemName: "eye.fill")
+        vc4.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
         
         //уставновить текст под кнопками
         vc1.title = "News"
         vc2.title = "Scoreboard"
         vc3.title = "Bullseye game"
-        vc4.title = "Schedule"
+        vc4.title = "GIF search"
         
         //цвет тона. параметр tintColor применяет цвет для объектов tabBar панели
         tabBar.tintColor = .label
