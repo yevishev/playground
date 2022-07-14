@@ -14,7 +14,7 @@ class MainTabBarViewController: UITabBarController {
         let vc1 = UINavigationController(rootViewController: NewsViewController())
         let vc2 = UINavigationController(rootViewController: ScoreboardViewController())
         let vc3 = UINavigationController(rootViewController: RankingsViewController())
-        let vc4 = UINavigationController(rootViewController: ScheduleViewController())
+        let vc4 = UINavigationController(rootViewController: GifCollectionViewController())
         
         //установить изображения для кнопок взаимодействия
         vc1.tabBarItem.image = UIImage(systemName: "newspaper")
