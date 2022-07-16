@@ -7,45 +7,91 @@
 
 import UIKit
 
-class GifCollectionViewController: UICollectionViewController {
+class GifCollectionViewController: UIViewController {
     
-    let data: [String] = [
-        "Picture1",
-        "Picture2",
-        "Picture3",
-        "Picture4",
-        "Picture5",
-        "Picture6",
-    ]
+    weak var collectionView: UICollectionView!
     
-//    private let searchTextField = UITextField(frame: CGRect(x: 10, y: 100, width: 394, height: 50))
+    override func loadView() {
+        super.loadView()
+        
+        //инициализирую объект UICollectionView с констрейнтами
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        //устанавливаю параметр false, чтобы дочерние элементы влияли на размер при изменении autosizing сетки
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        //добавляю на экран въюху
+        self.view.addSubview(collectionView)
+        //здесь указываю, что у въюхи UICollectionView верхние и нижние грацицы будут совпадать констрейнтами родительской вьюхи, и тоже самое с левой и правой констрейнтами (если текст справа налево, то наоборот)
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: self.view.topAnchor),
+            collectionView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
+            collectionView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
+            collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
+        ])
+        self.collectionView = collectionView
+    }
     
+    //в методе, который отрабатывает тогда, когда въюха уже загрузилась я устанавлю цвет задника UICollectionView, также назначу делегата и dataSource, для того чтобы в extension переписать нужные мне функции под свои нужды (если я правильно понял)
     override func viewDidLoad() {
         super.viewDidLoad()
-//        searchTextField.backgroundColor = .white
-//        searchTextField.borderStyle = .roundedRect
-//        searchTextField.clearButtonMode = .always
-//        searchTextField.returnKeyType = .search
-//        searchTextField.keyboardType = .default
-//        searchTextField.placeholder = "let`s find some gif"
-//        searchTextField.delegate = self
         
-//        view.backgroundColor = .systemBackground
-//        view.addSubview(searchTextField)
+        self.collectionView.backgroundColor = .white
+        self.collectionView.dataSource = self
+        self.collectionView.delegate = self
+        
+        self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCell")
     }
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.data.count
+}
+
+extension GifCollectionViewController: UICollectionViewDataSource {
+    
+    //устанавливаю колличество секций (в данном случае будет одна и в ней будет несколько ячеек
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    //количество элементов в секции
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
     }
     
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return GifCollectionViewCell()
+    //предполагаю, что данный метод нужен для того, чтобы если в случае ренлеринга необходимой ячейка вдруг она не смогла срендерится, то вместо неё рендерилась бы указанная ячейка здесь с указанными для неё параметрами (в данном случае индекс ячейки + 1 (т.к. с нуля идет отсчет и типа че за нулевая ячейка, не комильфо))
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as! GifCollectionViewCell
+        cell.textLabel.text = String(indexPath.row + 1)
+        return cell
     }
-//    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-////        print(textField.text ?? "undefined")
-//        if let text = textField.text, let textRange = Range(range, in: string) {
-//            let updatedText = text.replacingCharacters(in: textRange, with: string)
-//            print(updatedText)
-//        }
-//        return true
-//    }
 }
+
+extension GifCollectionViewController: UICollectionViewDelegate {
+    //в данной функции записываются действия, которые выполняются в случае нажатия на ячейку
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        print(indexPath.row + 1)
+    }
+}
+
+extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
+    //установка размеров ячейки
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(
+            width: 120,
+            height: 120)
+    }
+    //расстояние между ячейками
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 8
+    }
+    
+    //минимальный наследуемое расстояние для секции (хз зачем, в гуиде так написано)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    //установка маржина указанной въюхи
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)
+    }
+    
+}
+
