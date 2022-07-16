@@ -10,7 +10,16 @@ import UIKit
 class GifCollectionViewController: UIViewController {
     
     weak var collectionView: UICollectionView!
-    
+    private let data: [String] = [
+        "test",
+        "test1",
+        "test2",
+        "test3",
+        "test4",
+        "test5",
+        "test6",
+        "test7",
+    ]
     override func loadView() {
         super.loadView()
         
@@ -38,7 +47,8 @@ class GifCollectionViewController: UIViewController {
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
-        self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCell")
+        self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
+        
     }
 }
 
@@ -55,8 +65,10 @@ extension GifCollectionViewController: UICollectionViewDataSource {
     
     //предполагаю, что данный метод нужен для того, чтобы если в случае ренлеринга необходимой ячейка вдруг она не смогла срендерится, то вместо неё рендерилась бы указанная ячейка здесь с указанными для неё параметрами (в данном случае индекс ячейки + 1 (т.к. с нуля идет отсчет и типа че за нулевая ячейка, не комильфо))
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCell", for: indexPath) as! GifCollectionViewCell
-        cell.textLabel.text = String(indexPath.row + 1)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
+        cell.textLabel.text = String(indexPath.row + 3)
+        cell.textLabel.textColor = .systemBrown
+        cell.textLabel.shadowColor = .red
         return cell
     }
 }

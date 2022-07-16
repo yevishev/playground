@@ -28,8 +28,8 @@ class GifCollectionViewCell: UICollectionViewCell {
             textLabel.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor),
             textLabel.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor),
         ])
-        self.textLabel = textLabel
         self.contentView.backgroundColor = .systemGray
+        self.textLabel = textLabel
         self.textLabel.textAlignment = .center
     }
     
