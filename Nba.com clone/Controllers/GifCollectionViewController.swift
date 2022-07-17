@@ -10,6 +10,7 @@ import UIKit
 class GifCollectionViewController: UIViewController {
     
     weak var collectionView: UICollectionView!
+    
     private let data: [String] = [
         "test",
         "test101",
@@ -95,7 +96,7 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     //расстояние между ячейками
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 8
+        return 18
     }
     
     //минимальный наследуемое расстояние для секции (хз зачем, в гуиде так написано)
