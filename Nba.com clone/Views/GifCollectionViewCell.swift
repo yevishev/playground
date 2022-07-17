@@ -16,7 +16,7 @@ class GifCollectionViewCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         //создаю константу объекта UILabel
-        let textLabel = UILabel(frame: .zero)
+        let textLabel = UILabel(frame: .init(x: 10, y: 40, width: 100, height: 20))
         //как я понял, данное свойство нужно ставить в true тогда, когда необходимо сохранить пропорции при изменении соотношений сторон, а в родителе ставить false, чтобы констрейнты данного элементы легли в основу размеров ячейки
         textLabel.translatesAutoresizingMaskIntoConstraints = true
         //добавляю на экран въюху

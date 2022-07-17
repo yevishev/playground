@@ -12,13 +12,13 @@ class GifCollectionViewController: UIViewController {
     weak var collectionView: UICollectionView!
     private let data: [String] = [
         "test",
-        "test1",
-        "test2",
-        "test3",
-        "test4",
-        "test5",
-        "test6",
-        "test7",
+        "test101",
+        "test102",
+        "test103",
+        "test104",
+        "test105",
+        "test106",
+        "test107",
     ]
     override func loadView() {
         super.loadView()
@@ -42,8 +42,8 @@ class GifCollectionViewController: UIViewController {
     //в методе, который отрабатывает тогда, когда въюха уже загрузилась я устанавлю цвет задника UICollectionView, также назначу делегата и dataSource, для того чтобы в extension переписать нужные мне функции под свои нужды (если я правильно понял)
     override func viewDidLoad() {
         super.viewDidLoad()
+    
         
-        self.collectionView.backgroundColor = .white
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
         
@@ -60,15 +60,15 @@ extension GifCollectionViewController: UICollectionViewDataSource {
     }
     //количество элементов в секции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return 30
     }
     
     //предполагаю, что данный метод нужен для того, чтобы если в случае ренлеринга необходимой ячейка вдруг она не смогла срендерится, то вместо неё рендерилась бы указанная ячейка здесь с указанными для неё параметрами (в данном случае индекс ячейки + 1 (т.к. с нуля идет отсчет и типа че за нулевая ячейка, не комильфо))
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
-        cell.textLabel.text = String(indexPath.row + 3)
-        cell.textLabel.textColor = .systemBrown
-        cell.textLabel.shadowColor = .red
+        cell.textLabel.text = String(indexPath.row + 1) + "test font"
+        cell.textLabel.textColor = .white
+        cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
         return cell
     }
 }
@@ -77,6 +77,11 @@ extension GifCollectionViewController: UICollectionViewDelegate {
     //в данной функции записываются действия, которые выполняются в случае нажатия на ячейку
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print(indexPath.row + 1)
+        if data.indices.contains(indexPath.row) {
+            print(data[indexPath.row])
+        } else {
+            print("data is not exists")
+        }
     }
 }
 
@@ -87,6 +92,7 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
             width: 120,
             height: 120)
     }
+    
     //расстояние между ячейками
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 8
@@ -102,7 +108,7 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets.init(top: 8, left: 8, bottom: 8, right: 8)
+        return UIEdgeInsets.init(top: 8, left: 14, bottom: 8, right: 14)
     }
     
 }
