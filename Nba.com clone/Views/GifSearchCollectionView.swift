@@ -14,7 +14,7 @@ class GifSearchCollectionView: UICollectionReusableView {
     override init(frame: CGRect) {
         super.init(frame: .zero)
         //добавляю поля для текстового ввода
-        let searchTextField = UITextField(frame: CGRect(x: 10, y: 10, width: 400, height: 50))
+        let searchTextField = UITextField(frame: CGRect(x: 5, y: 5, width: 300, height: 50))
         searchTextField.clipsToBounds = true
         searchTextField.layer.cornerRadius = 6
         searchTextField.layer.borderColor = UIColor(white: 0.75, alpha: 1).cgColor
@@ -23,6 +23,7 @@ class GifSearchCollectionView: UICollectionReusableView {
         searchTextField.heightAnchor.constraint(equalToConstant: 44).isActive = true
         searchTextField.keyboardType = .default
         searchTextField.placeholder = "try find some gif"
+        searchTextField.delegate = self
         self.searchTextField = searchTextField
         addSubview(searchTextField)
     }
@@ -31,5 +32,16 @@ class GifSearchCollectionView: UICollectionReusableView {
         super.init(coder: aDecoder)
         
         fatalError("IB is not supported")
+    }
+}
+
+extension GifSearchCollectionView: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text, let textRange = Range(range, in: string) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            print(updatedText)
+        }
+        return true
     }
 }

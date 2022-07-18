@@ -52,7 +52,6 @@ class GifCollectionViewController: UIViewController {
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
     }
 }
 
@@ -80,7 +79,7 @@ extension GifCollectionViewController: UICollectionViewDataSource {
         
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
 
-        headerView.frame.size.height = 60
+        headerView.frame.size.height = 70
         
 
         return headerView
@@ -109,7 +108,7 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
     
     //установка размеров для header
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.collectionView.frame.size.width, height: 60)
+        return CGSize(width: self.collectionView.frame.size.width, height: 65)
     }
     
     //расстояние между ячейками
