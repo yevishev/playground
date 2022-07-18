@@ -21,6 +21,7 @@ class GifCollectionViewController: UIViewController {
         "test106",
         "test107",
     ]
+    
     override func loadView() {
         super.loadView()
         
@@ -38,27 +39,29 @@ class GifCollectionViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
         self.collectionView = collectionView
+        
+        //регистрация заголовка класса UICollectionReusableView
+        self.collectionView.register(GifSearchCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
+        //регистрация класса ячейки
+        self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
     }
     
     //в методе, который отрабатывает тогда, когда въюха уже загрузилась я устанавлю цвет задника UICollectionView, также назначу делегата и dataSource, для того чтобы в extension переписать нужные мне функции под свои нужды (если я правильно понял)
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-        
-        self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
         
     }
 }
 
 extension GifCollectionViewController: UICollectionViewDataSource {
-    
     //устанавливаю колличество секций (в данном случае будет одна и в ней будет несколько ячеек
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
+    
     //количество элементов в секции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 30
@@ -71,6 +74,16 @@ extension GifCollectionViewController: UICollectionViewDataSource {
         cell.textLabel.textColor = .white
         cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
         return cell
+    }
+    //viewForSupplementaryElementOfKind - инициализация заголовка в UICollectionView для размещения там UITextInput
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
+
+        headerView.frame.size.height = 60
+        
+
+        return headerView
     }
 }
 
@@ -92,6 +105,11 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
         return CGSize(
             width: 120,
             height: 120)
+    }
+    
+    //установка размеров для header
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width, height: 60)
     }
     
     //расстояние между ячейками
