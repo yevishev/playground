@@ -41,11 +41,10 @@ class GifCollectionViewController: UIViewController {
             collectionView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
         ])
         self.collectionView = collectionView
-        
-        //регистрация заголовка класса UICollectionReusableView
-        self.collectionView.register(GifSearchCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GifCollectionViewHeader")
         //регистрация класса ячейки
         self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
+        
+        self.collectionView.register(GifSearchCollectionViewCell.self, forCellWithReuseIdentifier: "GifSearchCollectionViewCell")
     }
     
     //в методе, который отрабатывает тогда, когда въюха уже загрузилась я устанавлю цвет задника UICollectionView, также назначу делегата и dataSource, для того чтобы в extension переписать нужные мне функции под свои нужды (если я правильно понял)
@@ -57,6 +56,7 @@ class GifCollectionViewController: UIViewController {
     }
 }
 
+//работа с количество ячеек
 extension GifCollectionViewController: UICollectionViewDataSource {
     //устанавливаю колличество секций (в данном случае будет одна и в ней будет несколько ячеек
     func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -68,27 +68,27 @@ extension GifCollectionViewController: UICollectionViewDataSource {
         return self.countOfCells
     }
     
-    //предполагаю, что данный метод нужен для того, чтобы если в случае ренлеринга необходимой ячейка вдруг она не смогла срендерится, то вместо неё рендерилась бы указанная ячейка здесь с указанными для неё параметрами (в данном случае индекс ячейки + 1 (т.к. с нуля идет отсчет и типа че за нулевая ячейка, не комильфо))
+    //метод нужен для отрисовки конкретной ячейки с определенными параметрами
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
-        cell.textLabel.text = String(indexPath.row + 1) + "test font"
-        cell.textLabel.textColor = .white
-        cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
-        return cell
-    }
-    //viewForSupplementaryElementOfKind - инициализация заголовка в UICollectionView для размещения там UITextInput
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "GifCollectionViewHeader", for: indexPath)
-        headerView.frame.size.height = 70
-        return headerView
+        switch indexPath.row {
+        case 0:
+            let cells = collectionView.dequeueReusableCell(withReuseIdentifier: "GifSearchCollectionViewCell", for: indexPath) as! GifSearchCollectionViewCell
+                cells.frame.size.height = 70
+            return cells
+        default:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
+            cell.textLabel.text = String(indexPath.row + 1) + "test font"
+            cell.textLabel.textColor = .white
+            cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
+            return cell
+        }
     }
 }
 
+//работы с отрисовка данных в ячейке
 extension GifCollectionViewController: UICollectionViewDelegate {
     //в данной функции записываются действия, которые выполняются в случае нажатия на ячейку
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(indexPath.row + 1)
         if data.indices.contains(indexPath.row) {
             print(data[indexPath.row])
         } else {
@@ -97,17 +97,21 @@ extension GifCollectionViewController: UICollectionViewDelegate {
     }
 }
 
+//установка констрейнтов и размеров ячеек
 extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
     //установка размеров ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(
-            width: 120,
-            height: 120)
-    }
-    
-    //установка размеров для header
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: self.collectionView.frame.size.width, height: 65)
+        switch indexPath.row {
+        case 0:
+            return CGSize(
+                width: 400,
+                height: 50)
+        default:
+            return CGSize(
+                width: 120,
+                height: 120)
+        }
+        
     }
     
     //расстояние между ячейками

@@ -7,9 +7,10 @@
 
 import UIKit
 
-class GifSearchCollectionView: UICollectionReusableView {
+class GifSearchCollectionViewCell: UICollectionViewCell {
     
     weak var searchTextField: UITextField!
+    var textValueSearch: String = ""
     
     override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -35,12 +36,12 @@ class GifSearchCollectionView: UICollectionReusableView {
     }
 }
 
-extension GifSearchCollectionView: UITextFieldDelegate {
-
+extension GifSearchCollectionViewCell: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text, let textRange = Range(range, in: string) {
             let updatedText = text.replacingCharacters(in: textRange, with: string)
-            print(updatedText)
+            self.textValueSearch = updatedText
         }
         return true
     }
