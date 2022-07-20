@@ -22,6 +22,8 @@ class GifCollectionViewController: UIViewController {
         "test107",
     ]
     
+    private var countOfCells: Int = 10
+    
     override func loadView() {
         super.loadView()
         
@@ -41,7 +43,7 @@ class GifCollectionViewController: UIViewController {
         self.collectionView = collectionView
         
         //регистрация заголовка класса UICollectionReusableView
-        self.collectionView.register(GifSearchCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerView")
+        self.collectionView.register(GifSearchCollectionView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "GifCollectionViewHeader")
         //регистрация класса ячейки
         self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
     }
@@ -63,7 +65,7 @@ extension GifCollectionViewController: UICollectionViewDataSource {
     
     //количество элементов в секции
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 30
+        return self.countOfCells
     }
     
     //предполагаю, что данный метод нужен для того, чтобы если в случае ренлеринга необходимой ячейка вдруг она не смогла срендерится, то вместо неё рендерилась бы указанная ячейка здесь с указанными для неё параметрами (в данном случае индекс ячейки + 1 (т.к. с нуля идет отсчет и типа че за нулевая ячейка, не комильфо))
@@ -77,11 +79,8 @@ extension GifCollectionViewController: UICollectionViewDataSource {
     //viewForSupplementaryElementOfKind - инициализация заголовка в UICollectionView для размещения там UITextInput
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "headerView", for: indexPath)
-
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "GifCollectionViewHeader", for: indexPath)
         headerView.frame.size.height = 70
-        
-
         return headerView
     }
 }
