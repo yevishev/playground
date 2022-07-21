@@ -10,6 +10,10 @@ import UIKit
 class GifCollectionViewController: UIViewController {
     
     weak var collectionView: UICollectionView!
+    weak var searchInput: UITextField!
+    weak var buttonIncreaseCells: UIButton!
+    weak var buttonDecreaseCells: UIButton!
+    lazy var textValueSearch: String = ""
     
     private let data: [String] = [
         "test",
@@ -22,15 +26,15 @@ class GifCollectionViewController: UIViewController {
         "test107",
     ]
     
-    private var countOfCells: Int = 10
+    private var countOfCells: Int = 30
     
     override func loadView() {
         super.loadView()
         
         //инициализирую объект UICollectionView с констрейнтами
-        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        let collectionView = UICollectionView(frame: CGRect(x: 10, y: 120, width: 400, height: 600), collectionViewLayout: UICollectionViewFlowLayout())
         //устанавливаю параметр false, чтобы дочерние элементы влияли на размер при изменении autosizing сетки
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
+        collectionView.translatesAutoresizingMaskIntoConstraints = true
         //добавляю на экран въюху
         self.view.addSubview(collectionView)
         //здесь указываю, что у въюхи UICollectionView верхние и нижние грацицы будут совпадать констрейнтами родительской вьюхи, и тоже самое с левой и правой констрейнтами (если текст справа налево, то наоборот)
@@ -43,8 +47,44 @@ class GifCollectionViewController: UIViewController {
         self.collectionView = collectionView
         //регистрация класса ячейки
         self.collectionView.register(GifCollectionViewCell.self, forCellWithReuseIdentifier: "GifCollectionViewCell")
+        //searchInput
+        let searchInput = UITextField(frame: CGRect(x: 10, y: 60, width: 400, height: 50))
+        searchInput.clipsToBounds = true
+        searchInput.layer.cornerRadius = 6
+        searchInput.layer.borderColor = UIColor(white: 0.75, alpha: 1).cgColor
+        searchInput.layer.borderWidth = 1
+        searchInput.borderStyle = .roundedRect
+        searchInput.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        searchInput.keyboardType = .default
+        searchInput.placeholder = "try find some gif"
+        searchInput.delegate = self
         
-        self.collectionView.register(GifSearchCollectionViewCell.self, forCellWithReuseIdentifier: "GifSearchCollectionViewCell")
+        self.searchInput = searchInput
+        self.view.addSubview(searchInput)
+        
+        //button`s +/-
+        let btnIncrease: UIButton = UIButton(frame: CGRect(x: 100, y: 720, width: 100, height: 50))
+        btnIncrease.backgroundColor = .systemGreen
+        btnIncrease.setTitle("+1", for: .normal)
+        self.buttonIncreaseCells = btnIncrease
+        self.view.addSubview(self.buttonIncreaseCells)
+        btnIncrease.addTarget(self, action: #selector(increaseCells), for: UIControl.Event.touchUpInside)
+        let btnDecrease: UIButton = UIButton(frame: CGRect(x: 210, y: 720, width: 100, height: 50))
+        btnDecrease.backgroundColor = .systemRed
+        btnDecrease.setTitle("-1", for: .normal)
+        btnDecrease.addTarget(self, action: #selector(decreaseCells), for: UIControl.Event.touchUpInside)
+        self.buttonDecreaseCells = btnDecrease
+        self.view.addSubview(self.buttonDecreaseCells)
+    }
+    
+    @objc func increaseCells() {
+        self.countOfCells += 1
+        print("increase success")
+    }
+    
+    @objc func decreaseCells() {
+        self.countOfCells -= 1
+        print("decrease success")
     }
     
     //в методе, который отрабатывает тогда, когда въюха уже загрузилась я устанавлю цвет задника UICollectionView, также назначу делегата и dataSource, для того чтобы в extension переписать нужные мне функции под свои нужды (если я правильно понял)
@@ -53,6 +93,18 @@ class GifCollectionViewController: UIViewController {
         
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
+    }
+}
+
+extension GifCollectionViewController: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text, let textRange = Range(range, in: string) {
+            let updatedText = text.replacingCharacters(in: textRange, with: string)
+            self.textValueSearch = updatedText
+            print(self.textValueSearch)
+        }
+        return true
     }
 }
 
@@ -70,18 +122,11 @@ extension GifCollectionViewController: UICollectionViewDataSource {
     
     //метод нужен для отрисовки конкретной ячейки с определенными параметрами
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.row {
-        case 0:
-            let cells = collectionView.dequeueReusableCell(withReuseIdentifier: "GifSearchCollectionViewCell", for: indexPath) as! GifSearchCollectionViewCell
-                cells.frame.size.height = 70
-            return cells
-        default:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
-            cell.textLabel.text = String(indexPath.row + 1) + "test font"
-            cell.textLabel.textColor = .white
-            cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
-            return cell
-        }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "GifCollectionViewCell", for: indexPath) as! GifCollectionViewCell
+        cell.textLabel.text = String(indexPath.row + 1) + "test font"
+        cell.textLabel.textColor = .white
+        cell.textLabel.font = UIFont(name: "DevanagariSangamMN-Bold", size: 20.0)
+        return cell
     }
 }
 
@@ -101,17 +146,9 @@ extension GifCollectionViewController: UICollectionViewDelegate {
 extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
     //установка размеров ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch indexPath.row {
-        case 0:
-            return CGSize(
-                width: 400,
-                height: 50)
-        default:
-            return CGSize(
-                width: 120,
-                height: 120)
-        }
-        
+        return CGSize(
+            width: 120,
+            height: 120)
     }
     
     //расстояние между ячейками

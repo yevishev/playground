@@ -8,7 +8,7 @@ class MainTabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         //переопределить цвет фона
-        view.backgroundColor = .systemYellow
+        view.backgroundColor = .systemGray6
         
         //в константе vc1 хранится объект класса viewController, который будет отвечать за представление в том случае, если он будет выбран на tabBar панели
         let vc1 = UINavigationController(rootViewController: NewsViewController())
