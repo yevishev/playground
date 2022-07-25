@@ -1,13 +1,4 @@
-//
-//  GifCollectionViewController.swift
-//  Nba.com clone
-//
-//  Created by oberoya on 09/07/2022.
-//
-
-import UIKit
-
-class GifCollectionViewController: UIViewController {
+class GifSearchCollectionView: UIViewController {
     
     weak var collectionView: UICollectionView!
     weak var searchInput: UITextField!
@@ -24,7 +15,6 @@ class GifCollectionViewController: UIViewController {
         "test105",
         "test106",
         "test107",
-        "testForTest"
     ]
     
     private var countOfCells: Int = 30
@@ -171,4 +161,7 @@ extension GifCollectionViewController: UICollectionViewDelegateFlowLayout {
                         insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets.init(top: 8, left: 14, bottom: 8, right: 14)
     }
+    
 }
+
+
